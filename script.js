@@ -1,5 +1,5 @@
 const SITE_CONFIG = {
-  price: "12 €",
+  price: "19 €",
   checkoutUrl: "", // Collez ici le lien Stripe, Klarna ou votre page de paiement.
 };
 
@@ -167,50 +167,11 @@ quiz.addEventListener("reset", () => {
   priorityList.innerHTML = "";
 });
 
-const modals = {
-  purchase: document.getElementById("purchaseModal"),
-};
-
-let lastFocused = null;
-
-function openModal(modal) {
-  lastFocused = document.activeElement;
-  modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-  const close = modal.querySelector(".modal-close");
-  close?.focus();
-}
-
-function closeModal(modal) {
-  modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-  lastFocused?.focus();
-}
-
-document.querySelectorAll(".js-buy").forEach((button) => {
-  button.addEventListener("click", (event) => {
-    if (!SITE_CONFIG.checkoutUrl) {
-      event.preventDefault();
-      openModal(modals.purchase);
-      return;
-    }
-    if (button.tagName === "A") {
-      button.href = SITE_CONFIG.checkoutUrl;
-    } else {
-      window.location.href = SITE_CONFIG.checkoutUrl;
-    }
+if (SITE_CONFIG.checkoutUrl) {
+  document.querySelectorAll(".js-buy").forEach((link) => {
+    link.href = SITE_CONFIG.checkoutUrl;
   });
-});
-
-document.querySelectorAll("[data-close-modal]").forEach((node) => {
-  node.addEventListener("click", () => closeModal(node.closest(".modal")));
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") return;
-  const open = document.querySelector('.modal[aria-hidden="false"]');
-  if (open) closeModal(open);
-});
+}
 
 const progress = document.getElementById("scrollProgress");
 function updateProgress() {
