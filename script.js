@@ -18,10 +18,11 @@ if (countdownEl) {
       countdownEl.textContent = "C'est le jour du lancement !";
       return;
     }
-    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
     const minutes = Math.floor((diff % 3600000) / 60000);
     const seconds = Math.floor((diff % 60000) / 1000);
-    countdownEl.textContent = `${pad(hours)} h ${pad(minutes)} min ${pad(seconds)} s avant le lancement du 5 septembre`;
+    countdownEl.textContent = `${days} j ${pad(hours)} h ${pad(minutes)} min ${pad(seconds)} s avant parution en date du 5 septembre 2026`;
   }
 
   updateCountdown();
