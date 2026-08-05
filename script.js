@@ -1,11 +1,32 @@
 const SITE_CONFIG = {
-  price: "37 €",
+  price: "12 €",
   checkoutUrl: "", // Collez ici le lien Stripe, Klarna ou votre page de paiement.
 };
 
 document.querySelectorAll("[data-price]").forEach((node) => {
   node.textContent = SITE_CONFIG.price;
 });
+
+const countdownEl = document.getElementById("launchCountdown");
+if (countdownEl) {
+  const launchDate = new Date("2026-09-05T00:00:00");
+  const pad = (value) => String(value).padStart(2, "0");
+
+  function updateCountdown() {
+    const diff = launchDate - new Date();
+    if (diff <= 0) {
+      countdownEl.textContent = "C'est le jour du lancement !";
+      return;
+    }
+    const hours = Math.floor(diff / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    countdownEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)} avant le lancement du 5 septembre`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
 
 const root = document.documentElement;
 const themeButton = document.querySelector(".theme-toggle");
@@ -147,7 +168,6 @@ quiz.addEventListener("reset", () => {
 });
 
 const modals = {
-  excerpt: document.getElementById("excerptModal"),
   purchase: document.getElementById("purchaseModal"),
 };
 
@@ -166,10 +186,6 @@ function closeModal(modal) {
   document.body.style.overflow = "";
   lastFocused?.focus();
 }
-
-document.querySelectorAll(".js-excerpt").forEach((button) => {
-  button.addEventListener("click", () => openModal(modals.excerpt));
-});
 
 document.querySelectorAll(".js-buy").forEach((button) => {
   button.addEventListener("click", (event) => {

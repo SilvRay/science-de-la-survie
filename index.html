@@ -23,7 +23,7 @@
   "publisher": {"@type": "Organization", "name": "UJIMA"},
   "offers": {
     "@type": "Offer",
-    "price": "37",
+    "price": "12",
     "priceCurrency": "EUR",
     "availability": "https://schema.org/PreOrder"
   }
@@ -52,7 +52,6 @@
   <nav class="nav" id="mainNav" aria-label="Navigation principale">
     <a href="#depart">Le constat</a>
     <a href="#precedents">Précédents</a>
-    <a href="#terrain">Germe & terrain</a>
     <a href="#sommaire">Sommaire</a>
     <a href="#test">Le test</a>
     <button class="theme-toggle" type="button" aria-label="Changer de thème" title="Changer de thème">
@@ -60,20 +59,19 @@
         <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.4 0-.8-.1-1.2A7 7 0 0 1 13.2 3H12Z"/>
       </svg>
     </button>
-    <a class="nav-cta js-buy" href="#acheter">Commander</a>
+    <a class="nav-cta js-buy" href="#acheter">Précommander</a>
   </nav>
 </header>
 
 <div class="signal-strip">
   <div class="signal-inner">
-    <span class="signal-tag">Donnée clé</span>
-    <span>En 2023, la prévention représentait environ 3 % des dépenses de santé dans l'OCDE.</span>
-    <a href="#sources">Voir la source</a>
+    <span class="signal-tag">Lancement</span>
+    <span id="launchCountdown" aria-live="polite">Calcul du compte à rebours…</span>
   </div>
 </div>
 
 <noscript>
-  <div class="noscript">Le contenu reste lisible sans JavaScript. Le test, les filtres et le changement de thème nécessitent JavaScript.</div>
+  <div class="noscript">Le contenu reste lisible sans JavaScript. Le compte à rebours, le test, les filtres et le changement de thème nécessitent JavaScript.</div>
 </noscript>
 
 <main class="paper" id="contenu">
@@ -89,7 +87,6 @@
 
         <div class="hero-actions">
           <a class="btn btn-primary" href="#sommaire">Découvrir le tome 1 <span aria-hidden="true">↓</span></a>
-          <button class="btn btn-secondary js-excerpt" type="button">Lire un extrait</button>
         </div>
       </div>
 
@@ -238,7 +235,7 @@
         <span class="section-kicker">02 / La prévention oubliée</span>
         <h2 class="section-title">L'hygiène, la panacée universelle</h2>
         <p class="section-intro">
-          Hygie (ou Hygée) et Panacée sont deux divinités sœurs issues de la mythologie grecque, représentant les deux piliers fondamentaux de la médecine : la prévention et la guérison. Aujourd'hui la prévention et l'hygiène sont les grandes oubliées du serment d'Hippocrate comme les chiffres le prouvent.
+          Hygie (ou Hygée) et Panacée sont deux divinités sœurs issues de la mythologie grecque, représentant les deux piliers fondamentaux de la médecine : la prévention et la guérison. Aujourd'hui la prévention et l'hygiène sont les grandes oubliées du serment d'Hippocrate comme les chiffres ci-dessous le prouvent.
         </p>
       </div>
 
@@ -269,10 +266,10 @@
     </div>
   </section>
 
-  <section class="section" id="questions">
+  <section class="section" id="sommaire">
     <div class="section-shell">
       <div class="section-head reveal">
-        <span class="section-kicker">Tome 1</span>
+        <span class="section-kicker">03 / Tome 1</span>
         <h2 class="section-title">Un livre pour redevenir souverain.</h2>
         <p class="section-intro">
           Ce livre vous permettra de retrouver la vérité cachée que votre corps est beaucoup plus intelligent que votre médecin traitant.
@@ -283,7 +280,7 @@
         <details class="question-card question-card--toc reveal">
           <summary>
             <span class="num">PARTIE 01</span>
-            <h3>Introduction à la Science de la Vie Comme Mode de Vie</h3>
+            <h3>Introduction à la Science de la (Sur)ie Comme Mode de Vie</h3>
             <span class="toc-plus" aria-hidden="true"></span>
           </summary>
           <div class="question-card-content">
@@ -325,13 +322,17 @@
         <details class="question-card question-card--toc reveal">
           <summary>
             <span class="num">PARTIE 04</span>
-            <h3>Rituels d'hygiène physique et mentale</h3>
+            <h3>Rituels d'hygiène physique et mentale au quotidien</h3>
             <span class="toc-plus" aria-hidden="true"></span>
           </summary>
           <div class="question-card-content">
-            <p>Des exercices d'observation et d'organisation du quotidien pour traduire les principes du livre en habitudes personnelles.</p>
+            <p>Des rituels au quotidien pour passer de la théorie à la pratique.</p>
           </div>
         </details>
+      </div>
+
+      <div class="board-cta reveal">
+        <button class="btn btn-primary js-buy" type="button">Précommander le tome 1 · <span data-price>12 €</span></button>
       </div>
     </div>
   </section>
@@ -339,12 +340,10 @@
   <section class="section" id="precedents">
     <div class="section-shell">
       <div class="section-head reveal">
-        <span class="section-kicker">03 / Un siècle de précédents documentés</span>
-        <h2 class="section-title">La confiance ne dispense jamais du contrôle.</h2>
+        <span class="section-kicker">04 / Un siècle de précédents documentés</span>
+        <h2 class="section-title">La confiance n'exclut pas le contrôle.</h2>
         <p class="section-intro">
-          Les scandales sanitaires ne démontrent pas que tout traitement est dangereux.
-          Ils montrent que les erreurs, les intérêts commerciaux et les défaillances de régulation
-          peuvent atteindre une très grande échelle.
+          Les scandales sanitaires sont la preuve que les autorités de contrôle sont défaillantes et que nous ne pouvons leur accorder notre confiance.
         </p>
       </div>
 
@@ -428,167 +427,7 @@
       </div>
 
       <div class="honesty-note reveal">
-        Un précédent documenté autorise la vigilance, pas la généralisation. L'autonomie commence par la capacité à vérifier une affirmation, à demander la source et à distinguer le bénéfice réel du discours commercial.
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="definitions">
-    <div class="section-shell">
-      <div class="section-head reveal">
-        <span class="section-kicker">04 / Qui définit la santé ?</span>
-        <h2 class="section-title">Les mots construisent le cadre dans lequel on vous soigne.</h2>
-        <p class="section-intro">
-          Une définition scientifique, une catégorie administrative et une stratégie commerciale
-          ne répondent pas au même objectif. Les confondre nous rend dépendants du langage des autres.
-        </p>
-      </div>
-
-      <div class="definition-quote reveal">
-        <blockquote>« Un état de complet bien-être physique, mental et social » — et pas seulement l'absence de maladie.</blockquote>
-        <p>Définition inscrite dans la Constitution de l'OMS, entrée en vigueur en 1948.</p>
-        <a class="source-link" href="https://www.who.int/about/governance/constitution" target="_blank" rel="noopener noreferrer">Constitution de l'OMS ↗</a>
-      </div>
-
-      <div class="definition-grid">
-        <article class="definition-card reveal">
-          <span class="label">Santé</span>
-          <h3>Une définition ambitieuse, des budgets surtout curatifs.</h3>
-          <p>La définition de 1948 demeure. Le paradoxe se trouve dans l'organisation concrète : la prévention reste minoritaire dans les dépenses.</p>
-        </article>
-        <article class="definition-card reveal">
-          <span class="label">Normalité</span>
-          <h3>Un seuil peut transformer une personne en patient.</h3>
-          <p>Les critères diagnostiques évoluent. Le livre invite à comprendre qui les fixe, sur quelles données et avec quelles conséquences.</p>
-        </article>
-        <article class="definition-card reveal">
-          <span class="label">Virus</span>
-          <h3>La classification scientifique évolue avec les connaissances.</h3>
-          <p>L'ICTV a notamment modifié en 2013 la définition de l'espèce virale. Un changement de définition ne prouve pas une manipulation ; il exige des explications accessibles.</p>
-        </article>
-        <article class="definition-card reveal">
-          <span class="label">Autorité</span>
-          <h3>Une institution peut guider sans habiter votre corps.</h3>
-          <p>OMS, agences et professionnels jouent un rôle collectif. Votre observation, vos choix quotidiens et votre consentement restent personnels.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="terrain">
-    <div class="section-shell">
-      <div class="section-head reveal">
-        <span class="section-kicker">05 / Le germe et le terrain</span>
-        <h2 class="section-title">Le débat a été simplifié jusqu'à faire disparaître la moitié de la question.</h2>
-        <p class="section-intro">
-          Les microbes comptent. Le corps qui les rencontre compte aussi.
-          L'histoire de Pasteur et de Béchamp permet d'ouvrir une réflexion plus vaste
-          sur l'agent, l'hôte et l'environnement.
-        </p>
-      </div>
-
-      <div class="terrain-stage reveal">
-        <article class="terrain-panel agent">
-          <span class="historical">Voie Pasteur / Koch</span>
-          <h3>L'agent extérieur</h3>
-          <p>La théorie microbienne a permis d'identifier des agents infectieux et de développer des moyens de prévention ou de traitement qui ont sauvé des vies.</p>
-          <ul>
-            <li>Identifier l'agent</li>
-            <li>Comprendre la transmission</li>
-            <li>Intervenir par l'asepsie, les vaccins ou les antimicrobiens</li>
-          </ul>
-        </article>
-
-        <div class="terrain-bridge" aria-hidden="true">×</div>
-
-        <article class="terrain-panel terrain">
-          <span class="historical">Béchamp / science de l'hôte</span>
-          <h3>Le milieu intérieur</h3>
-          <p>Béchamp insistait sur le terrain. La recherche moderne étudie désormais la susceptibilité de l'hôte, le microbiome, l'immunité et l'environnement.</p>
-          <ul>
-            <li>Observer l'état de l'hôte</li>
-            <li>Agir sur les conditions de vie</li>
-            <li>Comprendre les interactions avec le microbiote</li>
-          </ul>
-        </article>
-      </div>
-
-      <p class="terrain-note reveal">
-        Repère de rigueur : la théorie des « microzymas » de Béchamp n'est pas validée par la biologie moderne. Son insistance sur le terrain rejoint toutefois une question reconnue aujourd'hui : l'issue d'une infection dépend de l'interaction entre microbe, hôte et environnement.
-        <a class="source-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8462030/" target="_blank" rel="noopener noreferrer">Revue scientifique ↗</a>
-      </p>
-
-      <div class="terrain-claim reveal">Comprendre l'agent protège. Comprendre le terrain redonne une marge d'action.</div>
-    </div>
-  </section>
-
-  <section class="section" id="sommaire">
-    <div class="section-shell">
-      <div class="section-head reveal">
-        <span class="section-kicker">06 / Tome 1</span>
-        <h2 class="section-title">Comprendre la Vie pour Vivre en Santé</h2>
-        <p class="section-intro">
-          Le premier tome pose le langage, les principes et la logique nécessaires
-          pour passer d'une santé subie à une santé comprise.
-        </p>
-      </div>
-
-      <div class="toc-grid">
-        <details class="toc-part reveal" open>
-          <summary>
-            <span class="toc-index">PARTIE 01</span>
-            <h3>Introduction à la Science de la Vie Comme Mode de Vie</h3>
-            <span class="toc-plus" aria-hidden="true"></span>
-          </summary>
-          <div class="toc-content">
-            <ol>
-              <li>Qu'est-ce que la Science de la (Sur)Vie ?</li>
-              <li>Introduction à la Science de la (Sur)Vie</li>
-              <li>Enquête sur la Philosophie, les Principes et les Pratiques de la Science de la Vie</li>
-              <li>Exploration de l'Approche Médicale de la Santé et de la Maladie</li>
-              <li>Qu'est-ce qu'est réellement la Santé ?</li>
-            </ol>
-          </div>
-        </details>
-
-        <details class="toc-part reveal">
-          <summary>
-            <span class="toc-index">PARTIE 02</span>
-            <h3>La Nature et la Finalité de la Maladie</h3>
-            <span class="toc-plus" aria-hidden="true"></span>
-          </summary>
-          <div class="toc-content">
-            <ol>
-              <li>Qu'est-ce que la Maladie ?</li>
-              <li>Les Finalités de la Maladie : et si la maladie était notre plus grand allié ?</li>
-              <li>La Toxémie, Cause Universelle de la Maladie</li>
-              <li>L'Hygiène Naturelle ou la Science de la (Sur)Vie Face au Malade</li>
-              <li>La Nature de la Maladie</li>
-            </ol>
-          </div>
-        </details>
-
-        <details class="toc-part reveal">
-          <summary>
-            <span class="toc-index">PARTIE 03</span>
-            <h3>Questions les plus courantes & Réponses selon la logique de la Science de la (Sur)Vie</h3>
-            <span class="toc-plus" aria-hidden="true"></span>
-          </summary>
-          <div class="toc-content">
-            <p>Une partie conçue pour confronter les objections, les situations concrètes et les questions qui apparaissent lorsque l'on change de manière de penser la santé.</p>
-          </div>
-        </details>
-
-        <details class="toc-part reveal">
-          <summary>
-            <span class="toc-index">PARTIE 04</span>
-            <h3>Exercices pratiques d'hygiène et de santé mentale et physique</h3>
-            <span class="toc-plus" aria-hidden="true"></span>
-          </summary>
-          <div class="toc-content">
-            <p>Des exercices d'observation et d'organisation du quotidien pour traduire les principes du livre en habitudes personnelles.</p>
-          </div>
-        </details>
+        Ce que les élites ne font pas pour le peuple, le peuple se doit de le faire par lui et pour lui. Reprenons le contrôle de notre santé.
       </div>
     </div>
   </section>
@@ -604,39 +443,23 @@
         </p>
       </div>
 
-      <div class="practice-layout">
-        <div class="practice-copy">
-          <article class="practice-card reveal">
-            <h3>Cartographier vos habitudes</h3>
-            <p>Repérer les liens entre sommeil, alimentation, activité, environnement et état mental.</p>
-          </article>
-          <article class="practice-card reveal">
-            <h3>Distinguer signal et diagnostic</h3>
-            <p>Observer un symptôme sans l'ignorer, sans l'interpréter hâtivement et en sachant quand consulter.</p>
-          </article>
-          <article class="practice-card reveal">
-            <h3>Préparer vos décisions de santé</h3>
-            <p>Comprendre un traitement, demander les bénéfices attendus, les risques et les alternatives possibles.</p>
-          </article>
-          <article class="practice-card reveal">
-            <h3>Créer votre cadre d'hygiène</h3>
-            <p>Transformer des intentions vagues en routines simples, observables et ajustables.</p>
-          </article>
-        </div>
-
-        <div class="journal reveal" aria-label="Exemple d'exercice">
-          <div class="journal-head">
-            <small>Exercice aperçu</small>
-            <h3>Journal des conditions de santé</h3>
-          </div>
-          <div class="journal-body">
-            <div class="journal-row"><span>Sommeil réparateur</span><small>Matin</small><label class="check"><input type="checkbox" aria-label="Sommeil réparateur le matin"></label></div>
-            <div class="journal-row"><span>Énergie stable</span><small>Midi</small><label class="check"><input type="checkbox" aria-label="Énergie stable à midi"></label></div>
-            <div class="journal-row"><span>Digestion confortable</span><small>Soir</small><label class="check"><input type="checkbox" aria-label="Digestion confortable le soir"></label></div>
-            <div class="journal-row"><span>Temps de mouvement</span><small>Jour</small><label class="check"><input type="checkbox" aria-label="Temps de mouvement dans la journée"></label></div>
-            <div class="journal-row"><span>Repos mental réel</span><small>Soir</small><label class="check"><input type="checkbox" aria-label="Repos mental réel le soir"></label></div>
-          </div>
-        </div>
+      <div class="practice-copy">
+        <article class="practice-card reveal">
+          <h3>Appliquer la méthode scientifique</h3>
+          <p>Arriver à déceler le vrai du faux et sortir de la confusion sanitaire.</p>
+        </article>
+        <article class="practice-card reveal">
+          <h3>Distinguer, soigner et prendre soin</h3>
+          <p>Maîtriser l'art d'agir en autonomie tout en sachant reconnaître le moment précis où le recours au professionnel devient indispensable.</p>
+        </article>
+        <article class="practice-card reveal">
+          <h3>Préparer vos décisions de santé</h3>
+          <p>Comprendre comment le corps fonctionne, calculer les bénéfices/risques et trouver les alternatives possibles.</p>
+        </article>
+        <article class="practice-card reveal">
+          <h3>Créer votre hygiène en toute autonomie</h3>
+          <p>Transformer des intentions vagues en routines simples, observables et ajustables par vous-mêmes.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -758,23 +581,6 @@
 
   <section class="section offer" id="acheter">
     <div class="section-shell offer-grid">
-      <div class="offer-book" aria-hidden="true">
-        <div class="book-scene">
-          <div class="book-shadow"></div>
-          <div class="book">
-            <div class="book-pages"></div>
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-publisher">UJIMA · Éditions</div>
-              <div class="book-title"><span>La Science</span><span>de la Survie</span></div>
-              <div class="book-rule"></div>
-              <div class="book-tagline">Comment vivre en santé, naturellement</div>
-              <div class="book-volume"><strong>Tome 1</strong><span>Comprendre la Vie pour Vivre en Santé</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="offer-panel reveal">
         <span class="section-kicker">Édition numérique · Tome 1</span>
         <h2>Reprendre la première place dans votre santé.</h2>
@@ -784,20 +590,18 @@
         </p>
 
         <div class="price-line">
-          <span class="price" data-price>37 €</span>
+          <span class="price" data-price>12 €</span>
           <span class="price-label">Prix de lancement</span>
         </div>
 
         <div class="offer-list">
           <div class="offer-item"><strong>Format numérique</strong>Lecture sur téléphone, tablette et ordinateur.</div>
           <div class="offer-item"><strong>Sommaire progressif</strong>Des fondations jusqu'aux exercices pratiques.</div>
-          <div class="offer-item"><strong>Sources documentaires</strong>Les faits historiques sont reliés à leurs sources.</div>
           <div class="offer-item"><strong>Usage personnel</strong>Un guide à relire et annoter dans le temps.</div>
         </div>
 
         <div class="offer-actions">
-          <button class="btn btn-light js-buy" type="button">Commander le tome 1 · <span data-price>37 €</span></button>
-          <button class="btn btn-ghost-light js-excerpt" type="button">Lire l'aperçu</button>
+          <button class="btn btn-light js-buy" type="button">Précommander le tome 1 · <span data-price>12 €</span></button>
         </div>
       </div>
     </div>
@@ -807,7 +611,7 @@
     <div class="section-shell">
       <div class="section-head reveal">
         <span class="section-kicker">Questions importantes</span>
-        <h2 class="section-title">Avant d'ouvrir le dossier.</h2>
+        <h2 class="section-title">FAQ</h2>
       </div>
 
       <div class="faq">
@@ -817,19 +621,15 @@
         </details>
         <details class="reveal">
           <summary>Le livre est-il « anti-médecine » ?</summary>
-          <div class="faq-answer">Il critique la dépendance exclusive et le manque de prévention. Il reconnaît la valeur de la médecine aiguë, du diagnostic et des traitements lorsque leur bénéfice est établi.</div>
+          <div class="faq-answer">Il critique la dépendance exclusive et le manque de prévention. Il reconnaît la valeur de la médecine aiguë, du diagnostic et des traitements lorsque leur bénéfice est réellement établi.</div>
         </details>
         <details class="reveal">
           <summary>Quelle place occupe l'Hygiène naturelle ?</summary>
-          <div class="faq-answer">Le tome 1 présente son cadre philosophique, ses principes et ses pratiques. Certaines thèses historiques, comme la toxémie conçue comme cause universelle, appartiennent à ce cadre et ne constituent pas un consensus médical.</div>
+          <div class="faq-answer">Le tome 1 présente sa primauté, son cadre philosophique, ses principes et ses pratiques.</div>
         </details>
         <details class="reveal">
           <summary>À qui s'adresse ce premier tome ?</summary>
-          <div class="faq-answer">Aux personnes qui veulent comprendre la santé avant la maladie, examiner les discours d'autorité avec rigueur et construire des habitudes cohérentes sans se perdre dans une accumulation de conseils.</div>
-        </details>
-        <details class="reveal">
-          <summary>Les scandales cités sont-ils sourcés ?</summary>
-          <div class="faq-answer">Oui. La page utilise des documents de l'OMS, de l'OCDE, de la FDA, de l'ANSM, du ministère américain de la Justice, de l'ICTV et des publications scientifiques accessibles.</div>
+          <div class="faq-answer">Aux personnes qui veulent comprendre la santé et la maladie, examiner les discours d'autorité avec rigueur et construire des habitudes cohérentes sans se perdre dans une accumulation de conseils.</div>
         </details>
       </div>
     </div>
@@ -845,7 +645,7 @@
       </p>
       <p class="reveal">
         Reprendre le pouvoir signifie comprendre, vérifier et décider. La médecine reste disponible
-        lorsqu'elle est utile ; elle ne possède plus tout le territoire de la santé.
+        lorsqu'elle est utile ; elle ne possède pas tout le territoire de la santé.
       </p>
       <button class="btn js-buy reveal" type="button">Entrer dans La Science de la Survie</button>
     </div>
@@ -889,22 +689,6 @@
   </div>
 </footer>
 
-<div class="modal" id="excerptModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="excerptTitle">
-  <div class="modal-backdrop" data-close-modal></div>
-  <div class="modal-panel">
-    <button class="modal-close" type="button" data-close-modal aria-label="Fermer">×</button>
-    <span class="section-kicker">Aperçu éditorial</span>
-    <h2 id="excerptTitle">Avant de faire taire le signal.</h2>
-    <p>Extrait de tonalité proposé pour le premier tome :</p>
-    <div class="excerpt">
-      « La santé ne commence pas le jour où un symptôme apparaît. Elle se construit dans les conditions
-      répétées que nous offrons au vivant. Comprendre ces conditions ne donne pas un contrôle absolu.
-      Cela rend pourtant possible quelque chose d'essentiel : agir avant d'être entièrement dépendant. »
-    </div>
-    <p>Cet aperçu sert à montrer la direction éditoriale du livre. Il pourra être remplacé par un extrait définitif.</p>
-  </div>
-</div>
-
 <div class="modal" id="purchaseModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="purchaseTitle">
   <div class="modal-backdrop" data-close-modal></div>
   <div class="modal-panel">
@@ -917,7 +701,7 @@
       <strong>assets/main.js</strong>.
     </p>
     <div class="price-line">
-      <span class="price" data-price>37 €</span>
+      <span class="price" data-price>12 €</span>
       <span class="price-label">Tome 1 · édition numérique</span>
     </div>
     <button class="btn btn-primary" type="button" data-close-modal>Continuer l'aperçu</button>
