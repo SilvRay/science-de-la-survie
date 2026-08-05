@@ -1012,6 +1012,19 @@ img {
   color: #F2EFE6;
 }
 
+.lies-verse {
+  margin: 36px 0 0;
+  padding-top: 28px;
+  max-width: 560px;
+  border-top: 1px solid rgba(242, 239, 230, 0.22);
+  font-family: var(--heading);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.65;
+  color: #E3C66F;
+}
+
 .timeline-toolbar {
   display: flex;
   flex-wrap: wrap;

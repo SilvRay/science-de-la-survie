@@ -21,7 +21,7 @@ if (countdownEl) {
     const hours = Math.floor(diff / 3600000);
     const minutes = Math.floor((diff % 3600000) / 60000);
     const seconds = Math.floor((diff % 60000) / 1000);
-    countdownEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)} avant le lancement du 5 septembre`;
+    countdownEl.textContent = `${pad(hours)} h ${pad(minutes)} min ${pad(seconds)} s avant le lancement du 5 septembre`;
   }
 
   updateCountdown();
