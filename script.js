@@ -224,6 +224,91 @@ if (reducedMotion || !("IntersectionObserver" in window)) {
   reveals.forEach((el) => observer.observe(el));
 }
 
+class QuestionAccordion {
+  constructor(details, group) {
+    this.el = details;
+    this.group = group;
+    this.summary = details.querySelector("summary");
+    this.content = details.querySelector(".question-card-content");
+    this.animation = null;
+    this.isExpanding = false;
+    this.isClosing = false;
+    this.summary.addEventListener("click", (event) => this.onClick(event));
+  }
+
+  onClick(event) {
+    event.preventDefault();
+    if (this.isExpanding || this.el.open) {
+      this.collapse();
+    } else {
+      this.group.forEach((accordion) => {
+        if (accordion !== this && accordion.el.open) accordion.collapse();
+      });
+      this.expand();
+    }
+  }
+
+  expand() {
+    this.el.classList.remove("is-closing");
+    this.content.style.overflow = "hidden";
+    this.el.open = true;
+    this.isExpanding = true;
+    const endHeight = this.content.scrollHeight;
+
+    if (reducedMotion) {
+      this.content.style.height = "";
+      this.content.style.overflow = "";
+      this.isExpanding = false;
+      return;
+    }
+
+    this.animation?.cancel();
+    this.animation = this.content.animate(
+      { height: ["0px", `${endHeight}px`] },
+      { duration: 320, easing: "cubic-bezier(0.2, 0, 0, 1)" }
+    );
+    this.animation.onfinish = () => {
+      this.content.style.overflow = "";
+      this.isExpanding = false;
+      this.animation = null;
+    };
+  }
+
+  collapse() {
+    this.el.classList.add("is-closing");
+    this.content.style.overflow = "hidden";
+    this.isClosing = true;
+    const startHeight = this.content.scrollHeight;
+
+    const finish = () => {
+      this.el.open = false;
+      this.el.classList.remove("is-closing");
+      this.content.style.overflow = "";
+      this.isClosing = false;
+      this.animation = null;
+    };
+
+    if (reducedMotion) {
+      finish();
+      return;
+    }
+
+    this.animation?.cancel();
+    this.animation = this.content.animate(
+      { height: [`${startHeight}px`, "0px"] },
+      { duration: 240, easing: "cubic-bezier(0.4, 0, 1, 1)" }
+    );
+    this.animation.onfinish = finish;
+  }
+}
+
+document.querySelectorAll(".question-board").forEach((board) => {
+  const group = [];
+  board.querySelectorAll(".question-card--toc").forEach((el) => {
+    group.push(new QuestionAccordion(el, group));
+  });
+});
+
 const printState = new Map();
 window.addEventListener("beforeprint", () => {
   document.querySelectorAll("details").forEach((detail) => {

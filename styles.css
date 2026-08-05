@@ -895,6 +895,15 @@ img {
   color: var(--muted);
 }
 
+.question-card-content p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.question-card--toc.is-closing .toc-plus::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
