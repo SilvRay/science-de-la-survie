@@ -21,6 +21,7 @@
   --body: "Archivo", Inter, Arial, sans-serif;
   --max: 1220px;
   --nav-h: 72px;
+  --signal-h: 42px;
 }
 
 html[data-theme="dark"] {
@@ -44,7 +45,7 @@ html[data-theme="dark"] {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + 24px);
+  scroll-padding-top: calc(var(--nav-h) + var(--signal-h) + 24px);
 }
 
 body {
@@ -239,6 +240,9 @@ img {
 }
 
 .signal-strip {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 999;
   background: var(--red);
   color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.18);
@@ -1882,6 +1886,7 @@ img {
 @media (max-width: 760px) {
   :root {
     --nav-h: 64px;
+    --signal-h: 64px;
   }
 
   .brand img {
