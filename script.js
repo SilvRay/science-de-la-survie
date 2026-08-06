@@ -1,6 +1,6 @@
 const SITE_CONFIG = {
   price: "19 €",
-  checkoutUrl: "", // Collez ici le lien Stripe, Klarna ou votre page de paiement.
+  checkoutUrl: "https://buy.stripe.com/8x2dR8829gWn3UgdiWgjC0D",
 };
 
 document.querySelectorAll("[data-price]").forEach((node) => {
