@@ -44,11 +44,6 @@
     <span class="brand-label">Éditions · Santé</span>
   </a>
 
-  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainNav">
-    <span class="nav-toggle-lines" aria-hidden="true"><i></i><i></i><i></i></span>
-    Menu
-  </button>
-
   <nav class="nav" id="mainNav" aria-label="Navigation principale">
     <a href="#mensonges">Le constat</a>
     <a href="#sommaire">Sommaire</a>
@@ -59,8 +54,13 @@
         <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.4 0-.8-.1-1.2A7 7 0 0 1 13.2 3H12Z"/>
       </svg>
     </button>
-    <a class="nav-cta js-buy" href="#acheter">Précommander</a>
   </nav>
+
+  <a class="nav-cta js-buy" href="#acheter">Précommander</a>
+
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menu">
+    <span class="nav-toggle-lines" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
 </header>
 
 <div class="signal-strip">
@@ -86,7 +86,8 @@
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary js-buy" href="#acheter">Précommander le tome 1 <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-primary js-buy" href="#acheter">Précommander le tome 1</a>
+          <button class="btn btn-secondary js-preface" type="button">Lire la préface</button>
         </div>
       </div>
 
@@ -213,7 +214,7 @@
         </div>
       </div>
 
-      <p class="lies-punch reveal">...et ils diraient la vérité sur la santé ?</p>
+      <p class="lies-punch reveal">...et ils diraient la vérité sur les maladies ?</p>
 
       <p class="lies-verse reveal">
         Ce livre est le marronnage de la santé.<br>
@@ -693,6 +694,26 @@
     </div>
   </div>
 </footer>
+
+<div class="modal" id="prefaceModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="prefaceTitle">
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-panel">
+    <button class="modal-close" type="button" data-close-modal aria-label="Fermer">×</button>
+    <div class="modal-scroll">
+      <span class="section-kicker">Préface</span>
+      <h2 id="prefaceTitle">Avant de commencer.</h2>
+      <p>Les scientifiques doivent tout remettre en question, et surtout ce à quoi ils tiennent le plus, c'est-à-dire leurs propres découvertes et leurs propres idées. Cette règle fondamentale de la recherche scientifique permet d'éviter les développements erronés et de mettre en évidence ceux qui existent déjà.</p>
+      <p>Nous devons également tous avoir le droit de remettre en question l'ordre établi ; autrement, nous vivrions dans une dictature. En outre, la science ne peut pas être limitée à un nombre restreint d'institutions et d'experts. Elle peut et doit être pratiquée par toute personne disposant des connaissances nécessaires et des méthodes appropriées.</p>
+      <p>La science ne peut être considérée comme telle que si ses affirmations sont vérifiables et reproductibles, et si elles permettent d'établir des prédictions. Elle a également besoin d'un contrôle extérieur car, comme nous le verrons, une partie des sciences médicales a perdu le contact avec la réalité depuis déjà un certain temps.</p>
+      <p>Toute personne possédant des connaissances en biologie, sur la genèse de la vie, le développement et le fonctionnement des tissus, du corps et du cerveau, remettra automatiquement en question les hypothèses relatives à la maladie et à la santé.</p>
+      <p>Dans la réalité du corps et de ses mécanismes, il n'y a aucune place pour des processus pathologiques malveillants purement hypothétiques. Tous les processus biologiques, y compris ceux qui peuvent aboutir à la souffrance, à la douleur et à la mort, sont à l'origine destinés à remplir une fonction utile. Une approche différente de la santé et de la maladie est possible et nécessaire : toute personne non spécialiste disposant de certaines connaissances de base et lisant des publications scientifiques sur pathogénie (ou pathologie) peut se rendre compte que ce qui est décrit ne correspond en aucun cas à la réalité.</p>
+      <p>Les connaissances de base nécessaires à cette compréhension seront présentées dans cet ouvrage <em>Science de la (Sur)vie</em> qui sera publié en plusieurs tomes.</p>
+    </div>
+    <div class="modal-footer">
+      <a class="btn btn-primary js-buy" href="#acheter" data-close-modal>Je précommande</a>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

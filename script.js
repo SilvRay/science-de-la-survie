@@ -174,6 +174,37 @@ if (SITE_CONFIG.checkoutUrl) {
   });
 }
 
+const prefaceModal = document.getElementById("prefaceModal");
+let lastFocused = null;
+
+function openModal(modal) {
+  lastFocused = document.activeElement;
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  const close = modal.querySelector(".modal-close");
+  close?.focus();
+}
+
+function closeModal(modal) {
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  lastFocused?.focus();
+}
+
+document.querySelectorAll(".js-preface").forEach((button) => {
+  button.addEventListener("click", () => openModal(prefaceModal));
+});
+
+document.querySelectorAll("[data-close-modal]").forEach((node) => {
+  node.addEventListener("click", () => closeModal(node.closest(".modal")));
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  const open = document.querySelector('.modal[aria-hidden="false"]');
+  if (open) closeModal(open);
+});
+
 const progress = document.getElementById("scrollProgress");
 function updateProgress() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
