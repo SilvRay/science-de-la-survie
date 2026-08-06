@@ -244,14 +244,43 @@ img {
 
 .nav-toggle-lines {
   width: 18px;
-  display: grid;
-  gap: 4px;
+  height: 13px;
+  position: relative;
 }
 
 .nav-toggle-lines i {
-  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
   height: 1px;
   background: currentColor;
+  transition: transform 220ms ease, opacity 220ms ease, top 220ms ease;
+}
+
+.nav-toggle-lines i:nth-child(1) {
+  top: 0;
+}
+
+.nav-toggle-lines i:nth-child(2) {
+  top: 6px;
+}
+
+.nav-toggle-lines i:nth-child(3) {
+  top: 12px;
+}
+
+body.nav-open .nav-toggle-lines i:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+}
+
+body.nav-open .nav-toggle-lines i:nth-child(2) {
+  opacity: 0;
+}
+
+body.nav-open .nav-toggle-lines i:nth-child(3) {
+  top: 6px;
+  transform: rotate(-45deg);
 }
 
 .signal-strip {
@@ -1873,7 +1902,7 @@ img {
   width: 38px;
   height: 38px;
   border: 1px solid var(--line-strong);
-  background: transparent;
+  background: var(--paper-strong);
   color: var(--ink);
   cursor: pointer;
   font-size: 1.3rem;
