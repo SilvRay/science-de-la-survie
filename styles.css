@@ -459,6 +459,10 @@ body.nav-open .nav-toggle-lines i:nth-child(3) {
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
 }
 
+.btn[hidden] {
+  display: none;
+}
+
 .btn:hover,
 .btn:focus-visible {
   transform: translateY(-2px);
@@ -948,7 +952,8 @@ body.nav-open .nav-toggle-lines i:nth-child(3) {
   color: var(--muted);
 }
 
-.question-card--toc.is-closing .toc-plus::after {
+.question-card--toc.is-closing .toc-plus::after,
+.faq details.is-closing .toc-plus::after {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
@@ -1431,7 +1436,8 @@ body.nav-open .nav-toggle-lines i:nth-child(3) {
 }
 
 .toc-part[open] .toc-plus::after,
-.question-card--toc[open] .toc-plus::after {
+.question-card--toc[open] .toc-plus::after,
+.faq details[open] .toc-plus::after {
   transform: translate(-50%, -50%) rotate(0deg);
 }
 
@@ -1510,6 +1516,18 @@ body.nav-open .nav-toggle-lines i:nth-child(3) {
   margin: 0;
   padding: 24px 0;
   border-bottom: 1px solid var(--line);
+  animation: quiz-question-in 240ms ease;
+}
+
+@keyframes quiz-question-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .quiz-question legend {
@@ -1574,6 +1592,41 @@ body.nav-open .nav-toggle-lines i:nth-child(3) {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 24px;
+}
+
+.quiz-nav {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.quiz-nav-btn {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.quiz-nav-btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.quiz-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.quiz-nav-btn[hidden] {
+  display: none;
 }
 
 .quiz-result {
@@ -1716,19 +1769,20 @@ body.nav-open .nav-toggle-lines i:nth-child(3) {
   display: none;
 }
 
-.faq summary::after {
-  content: "+";
+.faq summary .toc-plus {
   position: absolute;
   right: 22px;
   top: 50%;
   transform: translateY(-50%);
-  font-family: var(--heading);
-  font-size: 1.7rem;
-  color: var(--red);
+  width: 18px;
+  height: 18px;
 }
 
-.faq details[open] summary::after {
-  content: "−";
+.faq summary .toc-plus::before,
+.faq summary .toc-plus::after {
+  width: 14px;
+  height: 2px;
+  background: var(--red);
 }
 
 .faq-answer {
@@ -2162,7 +2216,8 @@ body.nav-open .nav-toggle-lines i:nth-child(3) {
 
 @media (max-width: 440px) {
   .hero-actions .btn,
-  .offer-actions .btn {
+  .offer-actions .btn,
+  .quiz-actions .btn {
     width: 100%;
   }
 

@@ -105,6 +105,53 @@ const scoreTitle = document.getElementById("scoreTitle");
 const scoreText = document.getElementById("scoreText");
 const priorityList = document.getElementById("priorityList");
 
+const quizQuestions = [...quiz.querySelectorAll(".quiz-question")];
+const quizSubmitButton = quiz.querySelector('button[type="submit"]');
+let currentQuizIndex = 0;
+
+function updateQuizNav(fieldset, index) {
+  const prevBtn = fieldset.querySelector('[data-nav="prev"]');
+  const nextBtn = fieldset.querySelector('[data-nav="next"]');
+  if (prevBtn) prevBtn.hidden = index === 0;
+  if (nextBtn) {
+    nextBtn.hidden = index === quizQuestions.length - 1;
+    nextBtn.disabled = !fieldset.querySelector("input:checked");
+  }
+}
+
+function showQuizQuestion(index) {
+  currentQuizIndex = index;
+  quizQuestions.forEach((fieldset, i) => {
+    fieldset.hidden = i !== index;
+  });
+  if (quizSubmitButton) {
+    quizSubmitButton.hidden = index !== quizQuestions.length - 1;
+  }
+  updateQuizNav(quizQuestions[index], index);
+}
+
+quizQuestions.forEach((fieldset, index) => {
+  fieldset.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.addEventListener("change", () => {
+      if (index < quizQuestions.length - 1) {
+        showQuizQuestion(index + 1);
+      } else {
+        updateQuizNav(fieldset, index);
+      }
+    });
+  });
+
+  fieldset.querySelector('[data-nav="prev"]')?.addEventListener("click", () => {
+    if (index > 0) showQuizQuestion(index - 1);
+  });
+
+  fieldset.querySelector('[data-nav="next"]')?.addEventListener("click", () => {
+    if (index < quizQuestions.length - 1) showQuizQuestion(index + 1);
+  });
+});
+
+showQuizQuestion(0);
+
 quiz.addEventListener("submit", (event) => {
   event.preventDefault();
   const questions = [...quiz.querySelectorAll(".quiz-question")];
@@ -166,6 +213,7 @@ quiz.addEventListener("reset", () => {
   quizResult.classList.remove("show");
   scoreValue.textContent = "0";
   priorityList.innerHTML = "";
+  showQuizQuestion(0);
 });
 
 if (SITE_CONFIG.checkoutUrl) {
@@ -233,12 +281,12 @@ if (reducedMotion || !("IntersectionObserver" in window)) {
   reveals.forEach((el) => observer.observe(el));
 }
 
-class QuestionAccordion {
-  constructor(details, group) {
+class Accordion {
+  constructor(details, contentSelector, group = []) {
     this.el = details;
     this.group = group;
     this.summary = details.querySelector("summary");
-    this.content = details.querySelector(".question-card-content");
+    this.content = details.querySelector(contentSelector);
     this.animation = null;
     this.isExpanding = false;
     this.isClosing = false;
@@ -314,8 +362,12 @@ class QuestionAccordion {
 document.querySelectorAll(".question-board").forEach((board) => {
   const group = [];
   board.querySelectorAll(".question-card--toc").forEach((el) => {
-    group.push(new QuestionAccordion(el, group));
+    group.push(new Accordion(el, ".question-card-content", group));
   });
+});
+
+document.querySelectorAll(".faq details").forEach((el) => {
+  new Accordion(el, ".faq-answer");
 });
 
 const printState = new Map();
