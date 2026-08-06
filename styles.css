@@ -323,7 +323,7 @@ body.nav-open .nav-toggle-lines i:nth-child(3) {
 
 .paper {
   width: min(calc(100% - 28px), 1440px);
-  margin: 24px auto 56px;
+  margin: 24px auto 0;
   background:
     linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03)),
     var(--paper);
