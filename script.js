@@ -82,19 +82,177 @@ nav.querySelectorAll("a").forEach((link) => {
   });
 });
 
+class TimelineStack {
+  constructor(root) {
+    this.root = root;
+    this.cards = [...root.querySelectorAll(".timeline-item")];
+    this.order = this.cards.map((_, i) => i);
+    this.visibleDepth = 3;
+    this.countEl = document.getElementById("timelineCount");
+    this.prevBtn = document.getElementById("timelinePrev");
+    this.nextBtn = document.getElementById("timelineNext");
+
+    this.pendingSwipe = null;
+
+    this.cards.forEach((card) => this.bindDrag(card));
+    this.nextBtn?.addEventListener("click", () => this.swipeFront(1));
+    this.prevBtn?.addEventListener("click", () => this.bringBack());
+    this.root.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") this.swipeFront(1);
+      if (event.key === "ArrowLeft") this.bringBack();
+    });
+
+    this.render();
+  }
+
+  cancelPendingSwipe() {
+    if (!this.pendingSwipe) return;
+    const { card, settle } = this.pendingSwipe;
+    card.removeEventListener("transitionend", settle);
+    card.classList.remove("is-dragging");
+    this.pendingSwipe = null;
+  }
+
+  setFilter(filter) {
+    this.cancelPendingSwipe();
+    this.order = this.cards
+      .map((_, i) => i)
+      .filter((i) => filter === "all" || this.cards[i].dataset.type.split(" ").includes(filter));
+    this.cards.forEach((card, i) => {
+      card.hidden = !this.order.includes(i);
+      card.classList.add("is-resetting");
+    });
+    this.render();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        this.cards.forEach((card) => card.classList.remove("is-resetting"));
+      });
+    });
+  }
+
+  render() {
+    this.order.forEach((cardIndex, pos) => {
+      const card = this.cards[cardIndex];
+      card.style.zIndex = String(this.order.length - pos);
+      card.tabIndex = pos === 0 ? 0 : -1;
+      if (pos === 0) {
+        card.style.transform = "";
+        card.style.opacity = "1";
+      } else {
+        const depth = Math.min(pos, this.visibleDepth);
+        card.style.transform = `translateY(${depth * 18}px) scale(${1 - depth * 0.06})`;
+        card.style.opacity = pos < this.visibleDepth ? String(1 - depth * 0.1) : "0";
+      }
+    });
+    if (this.countEl) {
+      this.countEl.textContent = this.order.length
+        ? `${this.order.length} précédent${this.order.length > 1 ? "s" : ""}`
+        : "";
+    }
+  }
+
+  swipeFront(direction) {
+    if (this.order.length < 2) {
+      const card = this.cards[this.order[0]];
+      if (card) card.style.transform = "";
+      return;
+    }
+    if (reducedMotion) {
+      this.order.push(this.order.shift());
+      this.render();
+      return;
+    }
+    const cardIndex = this.order[0];
+    const card = this.cards[cardIndex];
+    card.style.transform = `translate(${direction * 480}px, -30px) rotate(${direction * 28}deg)`;
+    card.style.opacity = "0";
+
+    const settle = () => {
+      card.removeEventListener("transitionend", settle);
+      this.pendingSwipe = null;
+      this.order.push(this.order.shift());
+      card.classList.add("is-resetting");
+      this.render();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => card.classList.remove("is-resetting"));
+      });
+    };
+    this.pendingSwipe = { card, settle };
+    card.addEventListener("transitionend", settle, { once: true });
+  }
+
+  bringBack() {
+    if (this.order.length < 2) return;
+    const cardIndex = this.order.pop();
+    const card = this.cards[cardIndex];
+    if (reducedMotion) {
+      this.order.unshift(cardIndex);
+      this.render();
+      return;
+    }
+    card.classList.add("is-resetting");
+    card.style.transform = "translate(-480px, -30px) rotate(-28deg)";
+    card.style.opacity = "0";
+    this.order.unshift(cardIndex);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        card.classList.remove("is-resetting");
+        this.render();
+      });
+    });
+  }
+
+  bindDrag(card) {
+    let startX = 0;
+    let startY = 0;
+    let dx = 0;
+    let dragging = false;
+
+    card.addEventListener("pointerdown", (event) => {
+      if (this.order[0] !== this.cards.indexOf(card) || event.button === 2) return;
+      if (event.target.closest("a")) return;
+      startX = event.clientX;
+      startY = event.clientY;
+      dx = 0;
+      dragging = true;
+      card.setPointerCapture(event.pointerId);
+      card.classList.add("is-dragging");
+    });
+
+    card.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      dx = event.clientX - startX;
+      const dy = event.clientY - startY;
+      card.style.transform = `translate(${dx}px, ${dy * 0.15}px) rotate(${dx / 18}deg)`;
+    });
+
+    const endDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      card.classList.remove("is-dragging");
+      const threshold = 90;
+      if (Math.abs(dx) > threshold) {
+        this.swipeFront(dx > 0 ? 1 : -1);
+      } else {
+        card.style.transform = "";
+      }
+    };
+
+    card.addEventListener("pointerup", endDrag);
+    card.addEventListener("pointercancel", endDrag);
+  }
+}
+
 const filterButtons = document.querySelectorAll(".filter-btn");
-const timelineItems = document.querySelectorAll(".timeline-item");
+const timelineStackEl = document.getElementById("timelineStack");
+const timelineStack = timelineStackEl ? new TimelineStack(timelineStackEl) : null;
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const filter = button.dataset.filter;
     filterButtons.forEach((btn) => btn.setAttribute("aria-pressed", "false"));
     button.setAttribute("aria-pressed", "true");
-
-    timelineItems.forEach((item) => {
-      const types = item.dataset.type.split(" ");
-      item.hidden = filter !== "all" && !types.includes(filter);
-    });
+    timelineStack?.setFilter(filter);
   });
 });
 
