@@ -334,13 +334,13 @@ quiz.addEventListener("submit", (event) => {
   let text;
   if (score < 40) {
     title = "Santé largement déléguée";
-    text = "Vous dépendez encore beaucoup des décisions prises après l'apparition d'un problème. Le premier objectif consiste à rendre vos informations et vos habitudes visibles.";
+    text = "Actuellement, votre santé n’est pas entre vos mains. Le 1er objectif est d’observer attentivement vos propres besoins et questionner les protocoles que vous suivez.";
   } else if (score < 70) {
     title = "Autonomie en construction";
-    text = "Vous avez déjà commencé à reprendre une place active. La prochaine étape est de rendre vos pratiques plus régulières et vos critères de décision plus clairs.";
+    text = "Vous êtes déjà sur le chemin de maîtrise de votre santé. La prochaine étape est d'affiner vos connaissances et de confronter les anciennes données pour rendre vos pratiques plus performantes.";
   } else {
     title = "Autonomie active";
-    text = "Vous participez déjà à vos décisions avec méthode. Le livre peut vous aider à approfondir votre cadre, à repérer vos angles morts et à transmettre cette logique.";
+    text = "Vous avez repris votre responsabilité sur votre santé. Vous allez pouvoir commencer à affiner vos routines et anticiper les défis de santé en toute sérénité.";
   }
 
   scoreValue.textContent = String(score);
