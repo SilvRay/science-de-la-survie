@@ -261,7 +261,6 @@ const quizResult = document.getElementById("quizResult");
 const scoreValue = document.getElementById("scoreValue");
 const scoreTitle = document.getElementById("scoreTitle");
 const scoreText = document.getElementById("scoreText");
-const priorityList = document.getElementById("priorityList");
 
 const quizQuestions = [...quiz.querySelectorAll(".quiz-question")];
 const quizSubmitButton = quiz.querySelector('button[type="submit"]');
@@ -325,10 +324,7 @@ quiz.addEventListener("submit", (event) => {
       );
       return;
     }
-    answers.push({
-      value: Number(checked.value),
-      tip: fieldset.dataset.tip,
-    });
+    answers.push({ value: Number(checked.value) });
   }
 
   const total = answers.reduce((sum, item) => sum + item.value, 0);
@@ -350,17 +346,6 @@ quiz.addEventListener("submit", (event) => {
   scoreValue.textContent = String(score);
   scoreTitle.textContent = title;
   scoreText.textContent = text;
-  priorityList.innerHTML = "";
-
-  answers
-    .map((item, index) => ({ ...item, index }))
-    .sort((a, b) => a.value - b.value || a.index - b.index)
-    .slice(0, 3)
-    .forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item.tip;
-      priorityList.appendChild(li);
-    });
 
   quizResult.classList.add("show");
   quizResult.focus({ preventScroll: true });
@@ -370,7 +355,6 @@ quiz.addEventListener("submit", (event) => {
 quiz.addEventListener("reset", () => {
   quizResult.classList.remove("show");
   scoreValue.textContent = "0";
-  priorityList.innerHTML = "";
   showQuizQuestion(0);
 });
 
